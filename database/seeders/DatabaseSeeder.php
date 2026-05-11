@@ -103,11 +103,12 @@ class DatabaseSeeder extends Seeder
         }
 
         // Customers
+        $customerCounter = 1;
         foreach ($odps as $odp) {
             for ($c = 0; $c < 25; $c++) {
                  Customer::create([
                     'name' => fake()->name(),
-                    'customer_id_string' => "CUST-" . rand(10000, 99999),
+                    'customer_id_string' => "CUST-" . str_pad($customerCounter++, 5, '0', STR_PAD_LEFT),
                     'coordinates' => [
                         'lat' => $odp->coordinates['lat'] + (rand(-20, 20) / 10000),
                         'lng' => $odp->coordinates['lng'] + (rand(-20, 20) / 10000)
